@@ -1,0 +1,127 @@
+body {
+    background-color: #d4e1fa;
+    width: 100vw;
+    height: 100vh;
+    margin: 0;
+    font-family: "Quantico", sans-serif;
+    background-image: url("background.jpg");
+    background-size: cover;
+}
+
+/* top bar */
+#topbar {
+    background-color: rgba(255, 255, 255, 0.75);
+    backdrop-filter: blur(5px);
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    padding: 0.1rem;
+}
+
+#clock {
+    background-color: #303030;
+    color: white;
+    border-radius: 4px;
+    padding: 0.1rem;
+}
+
+/* welcome window */
+#welcome img {
+    width: 300px;
+    border-radius: 2rem;
+}
+
+#welcome .window-body {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    width: 40vw;
+    height: 60vh;
+}
+
+/* windows */
+.winbar {
+    text-align: center;
+    width: 100%;
+    padding: 4px 0;
+    background-color: rgba(255, 255, 255, 0.8);
+    backdrop-filter: blur(5px);
+    border-radius: 8px 8px 0 0;
+    font-weight: bold;
+    font-size: 20px;
+}
+
+.window-body {
+    padding: 0.5rem;
+    overflow-y: scroll;
+    background-color: #e3ebfa;
+}
+
+.window {
+    box-shadow: 0 0 10px rgba(0, 0, 0, 0.1);
+    border-radius: 8px;
+    width: fit-content;
+    height: fit-content;
+    position: absolute;
+    transform: translate(-50%, -50%);
+    top: 50%;
+    left: 50%;
+}
+
+/* Rainbow links */
+#welcome a {
+    background: linear-gradient(
+        to right,
+        red,
+        orange,
+        green,
+        blue,
+        indigo,
+        red
+    );
+    background-size: 400% 100%;
+
+    -webkit-background-clip: text;
+    background-clip: text;
+    -webkit-text-fill-color: transparent;
+    color: transparent;
+
+    /* Animate seamlessly */
+    animation: rainbow-shift 8s linear infinite;
+}
+
+@keyframes rainbow-shift {
+    0% {
+        background-position: 0% 50%;
+    }
+    100% {
+        background-position: 400% 50%;
+    }
+}
+
+/* Scrollbar styles */
+:root {
+    --sb-track-color: #232e33;
+    --sb-thumb-color: #235496;
+    --sb-size: 14px;
+}
+
+*::-webkit-scrollbar {
+    width: var(--sb-size);
+}
+
+*::-webkit-scrollbar-track {
+    background: var(--sb-track-color);
+    border-radius: 3px;
+}
+
+*::-webkit-scrollbar-thumb {
+    background: var(--sb-thumb-color);
+    border-radius: 3px;
+}
+
+@supports not selector(::-webkit-scrollbar) {
+    * {
+        scrollbar-color: var(--sb-thumb-color) var(--sb-track-color);
+    }
+}
