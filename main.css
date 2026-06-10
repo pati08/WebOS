@@ -6,16 +6,20 @@ body {
     font-family: "Quantico", sans-serif;
     background-image: url("background.jpg");
     background-size: cover;
+    overflow: hidden;
 }
 
 /* top bar */
-#topbar {
-    background-color: rgba(255, 255, 255, 0.75);
-    backdrop-filter: blur(5px);
+#topbar-widgets {
+    flex: 1;
     display: flex;
     justify-content: center;
     align-items: center;
-    padding: 0.1rem;
+}
+
+#topbar-apps {
+    border-right: solid 1px black;
+    flex: 1;
 }
 
 #clock {
@@ -23,6 +27,136 @@ body {
     color: white;
     border-radius: 4px;
     padding: 0.1rem;
+}
+
+#topbar {
+    background-color: rgba(255, 255, 255, 0.75);
+    backdrop-filter: blur(5px);
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    padding: 0.1rem;
+    flex-direction: row;
+}
+
+/* desktop */
+#desktop {
+    display: flex;
+    flex-wrap: wrap;
+    justify-content: center;
+    flex-direction: row;
+}
+
+.selectedIcon {
+    background-color: rgba(10, 100, 255, 0.4);
+}
+
+#desktop .appicon {
+    width: 100px;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    gap: 4px;
+    margin: 8px;
+}
+
+#desktop .appicon img {
+    width: 80%;
+}
+
+.appicon-label {
+    background-color: rgba(0, 0, 0, 0.5);
+    color: white;
+    padding: 4px 2px;
+    border-radius: 4px;
+    text-align: center;
+    width: min-content;
+    margin: auto;
+}
+
+/* windows */
+.winbar {
+    display: flex;
+    flex-direction: row;
+    cursor: grab;
+}
+
+.close-button {
+    background-color: transparent;
+    border: none;
+    font-size: 16px;
+    cursor: pointer;
+}
+
+.open-button {
+    border: none;
+    padding: 4px;
+    margin-left: 6px;
+    border-radius: 2px;
+    padding-top: 6px;
+    font-weight: bold;
+    box-shadow: 0 0 5px rgba(0, 0, 0, 0.2);
+}
+
+.winbar-title {
+    display: flex;
+    flex: 1;
+    justify-content: center;
+    align-items: center;
+    pointer-events: none;
+}
+
+.winbar-buttons {
+    margin-right: 8px;
+}
+
+.winbar {
+    text-align: center;
+    width: 100%;
+    padding: 4px 0;
+    background-color: rgba(255, 255, 255, 0.8);
+    backdrop-filter: blur(5px);
+    border-radius: 8px 8px 0 0;
+    font-weight: bold;
+    font-size: 20px;
+}
+
+.window-body {
+    padding: 0.5rem;
+    overflow-y: auto;
+    background-color: #e3ebfa;
+    min-height: 10px;
+}
+
+.window {
+    box-shadow: 0 0 10px rgba(0, 0, 0, 0.1);
+    border-radius: 8px;
+    width: fit-content;
+    height: fit-content;
+    position: absolute;
+    transform: translate(-50%, -50%);
+    top: 50%;
+    left: 50%;
+}
+
+/* stats window */
+#system-stats {
+    width: 50%;
+}
+#system-stats .window-body {
+    display: flex;
+    flex-direction: row;
+    justify-content: center;
+    align-items: center;
+    gap: 2rem;
+    overflow: hidden;
+    flex-wrap: wrap;
+}
+
+#system-stats .window-body div {
+    border: solid;
+    width: 60px;
+    text-align: center;
 }
 
 /* welcome window */
@@ -39,33 +173,99 @@ body {
     height: 60vh;
 }
 
-/* windows */
-.winbar {
-    text-align: center;
-    width: 100%;
-    padding: 4px 0;
-    background-color: rgba(255, 255, 255, 0.8);
-    backdrop-filter: blur(5px);
-    border-radius: 8px 8px 0 0;
+/* calculator */
+#calc-result {
+    background-color: #fff;
+    color: #333;
+    font-size: 2.5rem;
     font-weight: bold;
-    font-size: 20px;
+    padding: 0.5rem 1rem;
+    border-radius: 6px;
+    margin: 0 0 1rem 0;
+    text-align: right;
+    min-height: 2rem;
+    overflow: hidden;
 }
 
-.window-body {
-    padding: 0.5rem;
-    overflow-y: scroll;
-    background-color: #e3ebfa;
+#calculator table {
+    border-collapse: collapse;
+    margin: 0 auto;
 }
 
-.window {
-    box-shadow: 0 0 10px rgba(0, 0, 0, 0.1);
-    border-radius: 8px;
-    width: fit-content;
-    height: fit-content;
-    position: absolute;
-    transform: translate(-50%, -50%);
-    top: 50%;
-    left: 50%;
+#calculator td {
+    width: 50px;
+    height: 50px;
+    background-color: #fff;
+    border: 1px solid #ccc;
+    border-radius: 6px;
+    text-align: center;
+    font-size: 1.5rem;
+    cursor: pointer;
+    transition:
+        background-color 0.2s,
+        transform 0.1s;
+    user-select: none;
+}
+
+#calculator td:hover {
+    background-color: #f0f0f0;
+}
+
+#calculator td:active {
+    background-color: #d0d0d0;
+    transform: scale(0.95);
+}
+
+#calculator td:first-child {
+    border-radius: 6px 0 0 6px;
+}
+
+#calculator td:last-child {
+    border-radius: 0 6px 6px 0;
+}
+
+#calculator tr:first-child td:first-child {
+    border-radius: 6px 0 0 0;
+}
+
+#calculator tr:first-child td:last-child {
+    border-radius: 0 6px 0 0;
+}
+
+#calculator tr:last-child td:first-child {
+    border-radius: 0 0 0 6px;
+}
+
+#calculator tr:last-child td:last-child {
+    border-radius: 0 0 6px 0;
+}
+
+/* operator buttons */
+#calculator tr:first-child td {
+    background-color: #4a90d9;
+    color: white;
+}
+
+#calculator tr:first-child td:hover {
+    background-color: #3a80c9;
+}
+
+#calculator tr:first-child td:active {
+    background-color: #2a70b9;
+}
+
+/* clear button */
+#calculator td:last-child {
+    background-color: #d9534f;
+    color: white;
+}
+
+#calculator td:last-child:hover {
+    background-color: #c9433f;
+}
+
+#calculator td:last-child:active {
+    background-color: #b9332f;
 }
 
 /* Rainbow links */
